@@ -9,6 +9,7 @@ use Encore\Admin\Widgets\Form;
 use Encore\Admin\Widgets\Table;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Arr;
 use Jxlwqq\IdValidator\IdValidator;
 
 class IdValidatorController extends Controller
@@ -45,15 +46,15 @@ class IdValidatorController extends Controller
         $info = $idValidator->getInfo($id);
 
         $data = [
-            '地址码'     => array_get($info, 'addressCode'),
-            '地址码是否废弃' => array_get($info, 'abandoned'),
-            '地址'      => array_get($info, 'address'),
-            '出生日期'    => array_get($info, 'birthdayCode'),
-            '星座'      => array_get($info, 'constellation'),
-            '生肖'      => array_get($info, 'chineseZodiac'),
-            '性别'      => array_get($info, 'sex') == 1 ? '男' : '女',
-            '号码长度'    => array_get($info, 'length'),
-            '校验码'     => array_get($info, 'checkBit'),
+            '地址码'     => Arr::get($info, 'addressCode'),
+            '地址码是否废弃' => Arr::get($info, 'abandoned'),
+            '地址'      => Arr::get($info, 'address'),
+            '出生日期'    => Arr::get($info, 'birthdayCode'),
+            '星座'      => Arr::get($info, 'constellation'),
+            '生肖'      => Arr::get($info, 'chineseZodiac'),
+            '性别'      => Arr::get($info, 'sex') == 1 ? '男' : '女',
+            '号码长度'    => Arr::get($info, 'length'),
+            '校验码'     => Arr::get($info, 'checkBit'),
         ];
 
         return new Box('查询结果', new Table(['信息'], $data));
